@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import Form from "./components/Form";
+// shift + alt + f to format
+// Two routes to route to the home form page, regardless if just / or /app
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="auth-wrapper">
+        <div className="auth-inner">
+          <switch>
+            <Route exact path='/' component={Form} />
+            <Route path="/app" component={Form} />
+          </switch>
+        </div>
+      </div>
     </div>
   );
 }
