@@ -1,0 +1,3 @@
+https://url-short-d694b-default-rtdb.europe-west1.firebasedatabase.app/
+:
+null
