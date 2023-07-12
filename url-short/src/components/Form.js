@@ -1,7 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { getDatabase, child, ref, set, get } from 'firebase/database';
-import { isWebUrl } from 'valid-url'
+import { isWebUri, isWebUrl } from 'valid-url'
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootsrap/Tooltip";
 
@@ -68,8 +68,8 @@ class Form extends React.Component {
             longURL: this.state.longURL,
             preferedAlias: this.state.preferedAlias,
             gerneatedURL: generatedURL
+        // once data is stored, set current state of component to generated URL stored and loading to false as database operations are complete
         }).then((result) => {
-            // once data is stored, set current state of component to generated URL stored and loading to false as database operations are complete
             this.setState({
                 generatedURL: generatedURL,
                 loading: false
@@ -79,6 +79,45 @@ class Form extends React.Component {
 
         })
 
+        /* Error handling */
+
+        // check if input field holds an error
+        hasError = (key) => {
+            return this.state.errors.indexOf(key) !== -1;
+        }
+
+        // save contect of form as user updates
+        handleChange = (event) => {
+            const { id, value } = event.target
+            this.setState(prevState => ({
+                ...prevState,
+                [id]: value
+            }))
+        }
+
+        // validates the user input
+        validateInput = async () => {
+            var errors = [];
+            var errorMessages = this.state.errorMessage
+
+            // Long URL validation
+            // checks if a long URL has been added by user
+            if (this.state.longURL.length === 0) {
+                // adds longURL error to errors array
+                errors.push("longURL");
+                errorMessages['longURL'] = 'Please enter your the URL.';
+            }
+            // checks if provided URL is valid
+            else if (!isWebUri(this.state.longURL)) {
+                // adds longURL error
+                errors.push("longURL");
+                errorMessage['longURL'] = 'Please enter a URL in the form of https://www....';
+            }
+            // add error checking to test if longURL is the same size or shorter than the new provided short URL
 
 
+            // Perfered Alias validation
+            
+        }
+    }
 }
