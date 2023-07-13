@@ -7,16 +7,18 @@ import Form from "./components/Form";
 // Two routes to route to the home form page, regardless if just / or /app
 function App() {
   return (
-    <div className="App">
-      <div className="auth-wrapper">
-        <div className="auth-inner">
-          <switch>
-            <Route exact path='/' component={Form} />
-            <Route path="/app" component={Form} />
-          </switch>
+    <Router>
+      <div className="App">
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <switch>
+              <Route exact path='/' component={Form} />
+              <Route path="/app" component={Form} />
+            </switch>
+          </div>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
