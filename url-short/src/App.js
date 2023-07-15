@@ -11,10 +11,10 @@ function App() {
       <div className="App">
         <div className="auth-wrapper">
           <div className="auth-inner">
-            <switch>
+            <Switch>
               <Route exact path='/' component={Form} />
               <Route path="/app" component={Form} />
-            </switch>
+            </Switch>
           </div>
         </div>
       </div>

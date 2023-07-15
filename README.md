@@ -10,3 +10,6 @@
  Firebase - stores the data for the application
  Valid-url - tells us if provided URL by user is valid
 
+To solve Switch import failure
+    npm install react-router-dom@5.2.0
+or use Routes instead of Switch
