@@ -215,7 +215,7 @@ class Form extends React.Component {
                         <label html="basic-url">Your Short Link</label>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span cclassName="input-group-text">shrinklink.com/</span>
+                                <span className="input-group-text">shrinklink.com/</span>
                             </div>
                             <input
                                 id="preferedAlias"
@@ -223,10 +223,10 @@ class Form extends React.Component {
                                 value={this.state.preferedAlias}
                                 className={
                                     this.hasError("preferedAlias")
-                                        ? "form-control"
+                                        ? "form-control is-invalid"
                                         : "form-control"
                                 }
-                                type="text" placeholder="eg. 8f2asd"
+                                type="text" placeholder="eg. 8f2asd (Optional)"
                             />
                         </div>
                         <div
