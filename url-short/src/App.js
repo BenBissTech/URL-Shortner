@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import Form from "./components/Form";
+import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 // shift + alt + f to format
 // Two routes to route to the home form page, regardless if just / or /app
 function App() {

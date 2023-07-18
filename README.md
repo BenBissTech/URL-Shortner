@@ -13,3 +13,6 @@
 To solve Switch import failure
     npm install react-router-dom@5.2.0
 or use Routes instead of Switch
+
+npm install --save-dev @babel/plugin-proposal-private-property-in-object
+Fix bug
