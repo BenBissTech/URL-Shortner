@@ -35,6 +35,7 @@ class Form extends React.Component {
 
     // onSubmit handles user event - user click
     onSubmit = async (event) => {
+        console.log("on submit triggered");
         // used to prevent default of refreshing page upon suer click
         event.preventDefault();
         // sets loading state to true and resets generated URL to blank (in cases of multiple use)
@@ -106,13 +107,13 @@ class Form extends React.Component {
         if (this.state.longURL.length === 0) {
             // adds longURL error to errors array
             errors.push("longURL");
-            errorMessages['longURL'] = 'Please enter your the URL.';
+            errorMessages['longURL'] = 'Please enter your URL!';
         }
         // checks if provided URL is valid
         else if (!isWebUri(this.state.longURL)) {
             // adds longURL error
             errors.push("longURL");
-            errorMessages['longURL'] = 'Please enter a URL in the form of https://www....';
+            errorMessages['longURL'] = 'Please a URL in the form of https://www....';
         }
         // add error checking to test if longURL is the same size or shorter than the new provided short URL
 
@@ -122,22 +123,21 @@ class Form extends React.Component {
         if (this.state.preferedAlias !== '') {
             // alias should be less than 7 characters
             if (this.state.preferedAlias.length > 7) {
-                errors.push("preferedAlias");
-                errorMessages['preferedAlias'] = 'Please enter an alias less than 7 characters';
+                errors.push("suggestedAlias");
+                errorMessages['suggestedAlias'] = 'Please Enter an Alias less than 7 Characters';
             }
             // alias should not have any spaces
             else if (this.state.preferedAlias.indexOf(' ') >= 0) {
-                errors.push("preferedAlias");
-                errorMessages['preferedAlias'] = 'Please remove all spaces';
+                errors.push("suggestedAlias");
+                errorMessages['suggestedAlias'] = 'Spaces are not allowed in URLS';
             }
-
 
             // check if alias provided already exists
             var keyExists = await this.checkKeyExists()
 
             if (keyExists.exists()) {
-                errors.push("preferedAlias");
-                errorMessages['preferedAlias'] = 'Please enter a different alias, alias already exists';
+                errors.push("suggestedAlias");
+                errorMessages['suggestedAlias'] = 'The Alias you have entered already exists! Please enter another one =-)';
             }
         }
 
@@ -159,15 +159,16 @@ class Form extends React.Component {
     // method to check if alias already exists
     checkKeyExists = async () => {
         const dbRef = ref(getDatabase());
-        var result = get(child(dbRef, `/${this.state.preferedAlias}`)).catch((error) => { return false });
-        return result;
+        return get(child(dbRef, `/${this.state.preferedAlias}`)).catch((error) => {
+            return false
+        });
     }
 
     // method to copy generated URL to clipboard
     copyToClipBoard = () => {
         navigator.clipboard.writeText(this.state.generatedURL)
         this.setState({
-            toolTipMessage: 'Copied to clipboard!'
+            toolTipMessage: 'Copied!'
         })
     }
 
@@ -176,46 +177,37 @@ class Form extends React.Component {
         return (
             <div className="container">
                 <form autoComplete="off">
-                    <h3>Shrink Link</h3>
+                    <h3>Mini Link It!</h3>
 
                     <div className="form-group">
-                        <label>Enter your long URL</label>
+                        <label>Enter Your Long URL</label>
                         <input
                             id="longURL"
-                            // user input - handle change
                             onChange={this.handleChange}
                             value={this.state.longURL}
                             type="url"
                             required
-                            // checks if error array has value longURL
                             className={
                                 this.hasError("longURL")
-                                    // if error, show form is invalid
                                     ? "form-control is-invalid"
-                                    // otherwise carry on
                                     : "form-control"
                             }
-                            // placeholder for user input box                      
                             placeholder="https://www..."
                         />
                     </div>
-
                     <div
-                        // hide error message until state has changed (user clicked button)
                         className={
-                            this.hasError("longURL")
-                                ? "text-danger" : "visually-hidden"
+                            this.hasError("longURL") ? "text-danger" : "visually-hidden"
                         }
                     >
                         {this.state.errorMessage.longURL}
                     </div>
 
-
                     <div className="form-group">
-                        <label html="basic-url">Your Short Link</label>
+                        <label htmlFor="basic-url">Your Mini URL</label>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span className="input-group-text">shrinklink.com/</span>
+                                <span className="input-group-text">minilinkit.com/</span>
                             </div>
                             <input
                                 id="preferedAlias"
@@ -226,30 +218,31 @@ class Form extends React.Component {
                                         ? "form-control is-invalid"
                                         : "form-control"
                                 }
-                                type="text" placeholder="eg. 8f2asd (Optional)"
+                                type="text" placeholder="eg. 3fwias (Optional)"
                             />
                         </div>
                         <div
                             className={
-                                this.hasError("preferedAlias") ? "text-danger" : "visually-hidden"
+                                this.hasError("suggestedAlias") ? "text-danger" : "visually-hidden"
                             }
                         >
-                            {this.state.errorMessage.preferedAlias}
+                            {this.state.errorMessage.suggestedAlias}
                         </div>
                     </div>
 
+
                     <button className="btn btn-primary" type="button" onClick={this.onSubmit}>
                         {
-                            // if state is loading show spinner button, if not hide spinner
                             this.state.loading ?
                                 <div>
                                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 </div> :
                                 <div>
                                     <span className="visually-hidden spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    <span>Shrink Link</span>
+                                    <span>Mini Link It</span>
                                 </div>
                         }
+
                     </button>
 
                     {
@@ -271,12 +264,14 @@ class Form extends React.Component {
                                             }
                                         >
                                             <button onClick={() => this.copyToClipBoard()} data-toggle="tooltip" data-placement="top" title="Tooltip on top" className="btn btn-outline-secondary" type="button">Copy</button>
+
                                         </OverlayTrigger>
+
                                     </div>
                                 </div>
                             </div>
                     }
-                    
+
                 </form>
             </div>
         );
