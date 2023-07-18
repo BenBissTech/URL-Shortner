@@ -177,31 +177,40 @@ class Form extends React.Component {
         return (
             <div className="container">
                 <form autoComplete="off">
-                    <h3>Mini Link It!</h3>
+                    <h3>Shrink Link</h3>
 
                     <div className="form-group">
-                        <label>Enter Your Long URL</label>
+                        <label>Enter your long URL</label>
                         <input
                             id="longURL"
+                            // user input - handle change
                             onChange={this.handleChange}
                             value={this.state.longURL}
                             type="url"
                             required
+                            // checks if error array has value longURL
                             className={
                                 this.hasError("longURL")
+                                    // if error, show form is invalid
                                     ? "form-control is-invalid"
+                                    // otherwise carry on
                                     : "form-control"
                             }
+                            // placeholder for user input box                      
                             placeholder="https://www..."
                         />
                     </div>
+
                     <div
+                        // hide error message until state has changed (user clicked button)
                         className={
-                            this.hasError("longURL") ? "text-danger" : "visually-hidden"
+                            this.hasError("longURL")
+                                ? "text-danger" : "visually-hidden"
                         }
                     >
                         {this.state.errorMessage.longURL}
                     </div>
+
 
                     <div className="form-group">
                         <label htmlFor="basic-url">Your Mini URL</label>
@@ -229,20 +238,18 @@ class Form extends React.Component {
                             {this.state.errorMessage.suggestedAlias}
                         </div>
                     </div>
-
-
                     <button className="btn btn-primary" type="button" onClick={this.onSubmit}>
                         {
+                            // if state is loading show spinner button, if not hide spinner
                             this.state.loading ?
                                 <div>
                                     <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 </div> :
                                 <div>
                                     <span className="visually-hidden spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    <span>Mini Link It</span>
+                                    <span>Shrink Link</span>
                                 </div>
                         }
-
                     </button>
 
                     {
@@ -264,14 +271,12 @@ class Form extends React.Component {
                                             }
                                         >
                                             <button onClick={() => this.copyToClipBoard()} data-toggle="tooltip" data-placement="top" title="Tooltip on top" className="btn btn-outline-secondary" type="button">Copy</button>
-
                                         </OverlayTrigger>
-
                                     </div>
                                 </div>
                             </div>
                     }
-
+                    
                 </form>
             </div>
         );

@@ -16,3 +16,16 @@ or use Routes instead of Switch
 
 npm install --save-dev @babel/plugin-proposal-private-property-in-object
 Fix bug
+
+Within Server:
+Must create reference to ServiceAccountKey within the folder
+Removed from current repository due to security reasons
+
+Steps to test via virtual server:
+
+cd into url-short-server folder
+Run - python3 -m venv *name of virtual server*
+Run - Set-ExecutionPolicy Unrestricted -Scope Process (allows you to activate scripts within current powershell session)
+Run - *name of virtual server*\Scripts\activate
+Run - pip install -r requirements.txt (install all necessary imports)
+Run - python wsgi.py
