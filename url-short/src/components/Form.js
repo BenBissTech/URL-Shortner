@@ -213,10 +213,10 @@ class Form extends React.Component {
 
 
                     <div className="form-group">
-                        <label htmlFor="basic-url">Your Mini URL</label>
+                        <label htmlFor="basic-url">Your Short URL</label>
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <span className="input-group-text">minilinkit.com/</span>
+                                <span className="input-group-text">shrinklink.com/</span>
                             </div>
                             <input
                                 id="preferedAlias"
@@ -247,7 +247,7 @@ class Form extends React.Component {
                                 </div> :
                                 <div>
                                     <span className="visually-hidden spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                    <span>Shrink Link</span>
+                                    <span>Generate Link</span>
                                 </div>
                         }
                     </button>

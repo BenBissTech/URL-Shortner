@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background:linear-gradient(#8EC5FC, #E0C3FC);
+  background:linear-gradient(#103c61, #11b2a9);
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -14,6 +14,11 @@ body {
 h1,h2,h3,h4,h5,h6,label {
   font-weight: 500;
   font-family: 'Fira Sans', sans-serif;
+}
+
+img {
+  padding: 5px;
+  width: 150px;
 }
 
 body, html, .App, #root, .auth-wrapper {
