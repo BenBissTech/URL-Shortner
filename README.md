@@ -23,9 +23,12 @@ Removed from current repository due to security reasons
 
 Steps to test via virtual server:
 
+
+Obtain private key from firebase server and create new json file - "url-short-server\ServiceAccountKey.json" and store key within
+
 cd into url-short-server folder
 Run - python3 -m venv *name of virtual server*
 Run - Set-ExecutionPolicy Unrestricted -Scope Process (allows you to activate scripts within current powershell session)
 Run - *name of virtual server*\Scripts\activate
 Run - pip install -r requirements.txt (install all necessary imports)
-Run - python wsgi.py
+Run - python .\wsgi.py
