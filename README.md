@@ -1,14 +1,14 @@
 # URL-Shortner
- Web application to shorten provided URLs
+Web application to shorten provided URLs
  
- Packages:
+Packages:
 
- Bootstrap - prewritten CSS framework (stylises webpage)
- React-bootstrap - bootstrap for react
- Nanoid - generates unique identifier which will append to the generated shortened URL
- React-router-dom - handles routen for the webpages of the application
- Firebase - stores the data for the application
- Valid-url - tells us if provided URL by user is valid
+Bootstrap - prewritten CSS framework (stylises webpage)
+React-bootstrap - bootstrap for react
+Nanoid - generates unique identifier which will append to the generated shortened URL
+React-router-dom - handles routen for the webpages of the application
+Firebase - stores the data for the application
+Valid-url - tells us if provided URL by user is valid
 
 To solve Switch import failure
     npm install react-router-dom@5.2.0
@@ -23,7 +23,6 @@ Removed from current repository due to security reasons
 
 Steps to test via virtual server:
 
-
 Obtain private key from firebase server and create new json file - "url-short-server\ServiceAccountKey.json" and store key within
 
 cd into url-short-server folder
@@ -32,3 +31,6 @@ Run - Set-ExecutionPolicy Unrestricted -Scope Process (allows you to activate sc
 Run - *name of virtual server*\Scripts\activate
 Run - pip install -r requirements.txt (install all necessary imports)
 Run - python .\wsgi.py
+
+To test connection, obtain short url i.e. abcdefg from database and domain/port that server is running on i.e. Running on http://127.0.0.1:5000
+Test redirection using http://127.0.0.1:5000/abcdefg
