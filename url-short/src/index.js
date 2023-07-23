@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
@@ -13,12 +13,15 @@ const firebaseConfig = {
   storageBucket: "url-short-d694b.appspot.com",
   messagingSenderId: "448637750830",
   appId: "1:448637750830:web:ca171e9084511ad34d19bf",
-  measurementId: "G-M28V83R73W"
+  measurementId: "G-M28V83R73W",
+  databaseURL: 'https://url-short-d694b-default-rtdb.europe-west1.firebasedatabase.app'
 };
 
 initializeApp(firebaseConfig);
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,

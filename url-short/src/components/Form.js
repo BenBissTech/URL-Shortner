@@ -52,30 +52,33 @@ class Form extends React.Component {
 
         // generate alias for short URL and attaches it to domain
         var generatedKey = nanoid(5);
-        var generatedURL = "shrinklink.com/" + generatedKey
+        var generatedURL = "shrinklink.com/" + generatedKey;
+
+        console.log(generatedURL);
 
         // check if user has inputted a prefered alias
         if (this.state.preferedAlias !== '') {
-            generatedKey = this.state.preferedAlias
-            generatedURL = "shrinklink.com/" + this.state.preferedAlias
+            console.log("if statement triggered");
+            generatedKey = this.state.preferedAlias;
+            generatedURL = "shrinklink.com/" + this.state.preferedAlias;
+            console.log(generatedURL);
         }
 
         /* Database Functionality */
         // ref to database
-        const db = getDatabase();
+        const db = getDatabase()
+        console.log(db);
         // set/write data to database, db = database reg, '/' + generatedAlias = key
         set(ref(db, '/' + generatedKey), {
             generatedKey: generatedKey,
             longURL: this.state.longURL,
             preferedAlias: this.state.preferedAlias,
             generatedURL: generatedURL
-            // once data is stored, set current state of component to generated URL stored and loading to false as database operations are complete
         }).then((result) => {
             this.setState({
                 generatedURL: generatedURL,
                 loading: false
             })
-            // error handling
         }).catch((e) => {
 
         })
